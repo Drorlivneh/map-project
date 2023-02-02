@@ -11,7 +11,6 @@ function presentMap(data){
             zoom: 13
 
         });
-        console.log('3');
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
              maxZoom: 19,
              attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -23,11 +22,10 @@ const form = document.getElementById('button-arrow');
 form.addEventListener('click', function(e){
     e.preventDefault();
     inputIp = document.getElementById('input').value;
-    console.log(inputIp);
-    document.getElementById("ip-address").innerHTML = "";
-    document.getElementById("location").innerHTML = "";
-    document.getElementById("timezone").innerHTML = "";
-    document.getElementById("isp").innerHTML = "";
+    document.getElementById("ip-address-information").innerHTML = "";
+    document.getElementById("location-information").innerHTML = "";
+    document.getElementById("timezone-information").innerHTML = "";
+    document.getElementById("isp-information").innerHTML = "";
     document.getElementById("map-div").innerHTML = "";
     
 
@@ -41,7 +39,7 @@ async function fetchSwitch(inputIpStatus){
         
     }
     else{
-        fetchType = `https://geo.ipify.org/api/v2/country,city?apiKey=at_F47QKtOXqTITdhpywY4cTU1bUBb5a&ipAddress=2.2.2.2`
+        fetchType = `https://geo.ipify.org/api/v2/country,city?apiKey=at_F47QKtOXqTITdhpywY4cTU1bUBb5a&ipAddress=`
 
     }
     await fetch(fetchType)
@@ -60,58 +58,34 @@ async function fetchSwitch(inputIpStatus){
 })
 }
 
+
+
 let presentInformationBox = ((data) => {
-    let ipAddress = document.getElementById('ip-address');
+    let ipAddress = document.getElementById('ip-address-information');
     let newIpAddress = document.createElement('div');
     newIpAddress.id = ('ip-address-info');
     newIpAddress.classList = ('square-info');
     newIpAddress.innerHTML = data.ip;
     ipAddress.appendChild(newIpAddress);
-    let location = document.getElementById('location');
+    let location = document.getElementById('location-information');
     let newLocation = document.createElement('div');
     newLocation.id = ('new-location');
     newLocation.classList = ('square-info');
     newLocation.innerHTML = data.location.region+", "+data.location.country;
     location.appendChild(newLocation);
-    let timeZone = document.getElementById('timezone');
+    let timeZone = document.getElementById('timezone-information');
     let newTimeZone = document.createElement('div');
     newTimeZone.id = ('timezone');
     newTimeZone.classList = ('square-info');
     newTimeZone.innerHTML = data.location.timezone;
     timeZone.appendChild(newTimeZone);
-    let isp = document.getElementById('isp');
+    let isp = document.getElementById('isp-information');
     let newIsp = document.createElement('div');
     newIsp.id = ('isp');
     newIsp.classList = ('square-info');
     newIsp.innerHTML = data.isp;
     isp.appendChild(newIsp);
     })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
